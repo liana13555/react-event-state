@@ -4,6 +4,7 @@ import Dropdown from './components/Dropdown';
 import ColorPicker from './components/ColorPicker';
 import TodoList from './components/TodoList';
 import initialTodos from './todos.json';
+import Form from './components/Form';
 
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -17,12 +18,18 @@ const colorPickerOptions = [
 class App extends Component {
   state = {
     todos: initialTodos,
+    name: '',
+    tag: '',
   };
 
   deleteTodo = todoId => {
     this.setState(prevState => ({
       todos: prevState.todos.filter(todo => todo.id !== todoId),
     }));
+  };
+
+  formSubmitHandler = data => {
+    console.log(data);
   };
 
   render() {
@@ -33,6 +40,7 @@ class App extends Component {
 
     return (
       <>
+        <Form propOnSubmit={this.formSubmitHandler} />
         <h1>Состояние компонента</h1>
         <Counter initialValue={10} />
         <Dropdown />
